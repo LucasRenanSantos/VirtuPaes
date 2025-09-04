@@ -17,6 +17,9 @@ namespace VirtuPães
         {
             InitializeComponent();
             this.usuario = usuario;
+            ListarCategorisaCmb();
+            
+
         }
 
         private void FormProdutos_Load(object sender, EventArgs e)
@@ -26,6 +29,20 @@ namespace VirtuPães
 
         private void pibDescricaoProdutos_Click(object sender, EventArgs e)
         {
+
+        }
+        public void ListarCategorisaCmb()
+        {
+            Model.Categoria categoria = new Model.Categoria();
+            // tabela p/ receber o resultado do SELECT
+           DataTable tabela = categoria.Listar();
+
+            foreach (DataRow dr in tabela.Rows)
+            {
+                cmbCategoriaCadasrtro.Items.Add($"{dr["id"]} - {dr["nome"]}");
+                cmbCategoriaEditar.Items.Add($"{dr["id"]} - {dr["nome"]}");
+            }
+                
 
         }
     }
